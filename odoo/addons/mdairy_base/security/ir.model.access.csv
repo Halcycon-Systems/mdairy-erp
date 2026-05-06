@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mdairy_farmer_user,mdairy.farmer.user,model_mdairy_farmer,mdairy_base.group_mdairy_user,1,1,1,0
+access_mdairy_farmer_manager,mdairy.farmer.manager,model_mdairy_farmer,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_cooperative_user,mdairy.cooperative.user,model_mdairy_cooperative,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_cooperative_manager,mdairy.cooperative.manager,model_mdairy_cooperative,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_collection_centre_user,mdairy.collection.centre.user,model_mdairy_collection_centre,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_collection_centre_manager,mdairy.collection.centre.manager,model_mdairy_collection_centre,mdairy_base.group_mdairy_manager,1,1,1,1

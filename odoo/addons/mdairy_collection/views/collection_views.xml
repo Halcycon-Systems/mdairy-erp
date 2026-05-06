@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Collection List -->
+    <record id="mdairy_collection_list_view" model="ir.ui.view">
+        <field name="name">mdairy.collection.list</field>
+        <field name="model">mdairy.collection</field>
+        <field name="arch" type="xml">
+            <list string="Milk Collections"
+                  decoration-danger="state=='rejected'"
+                  decoration-success="state in ['invoiced','paid']"
+                  decoration-info="state=='confirmed'">
+                <field name="name"/>
+                <field name="collection_date"/>
+                <field name="session"/>
+                <field name="farmer_id"/>
+                <field name="cooperative_id"/>
+                <field name="collection_centre_id"/>
+                <field name="quantity_litres" sum="Total Litres"/>
+                <field name="quality_grade" widget="badge"/>
+                <field name="unit_price"/>
+                <field name="amount_due" sum="Total Amount"/>
+                <field name="state" widget="badge"
+                       decoration-success="state in ['invoiced','paid']"
+                       decoration-info="state=='confirmed'"
+                       decoration-danger="state=='rejected'"
+                       decoration-muted="state=='draft'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Collection Form -->
+    <record id="mdairy_collection_form_view" model="ir.ui.view">
+        <field name="name">mdairy.collection.form</field>
+        <field name="model">mdairy.collection</field>
+        <field name="arch" type="xml">
+            <form string="Milk Collection">
+                <header>
+                    <button name="action_confirm" string="Confirm"
+                            type="object" class="oe_highlight"
+                            invisible="state != 'draft'"/>
+                    <button name="action_reject" string="Reject"
+                            type="object"
+                            invisible="state not in ['draft','confirmed']"/>
+                    <button name="action_reset_draft" string="Reset to Draft"
+                            type="object"
+                            invisible="state not in ['confirmed','rejected']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,invoiced,paid"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Collection Details">
+                            <field name="collection_date"/>
+                            <field name="session"/>
+                            <field name="farmer_id"/>
+                            <field name="cooperative_id" readonly="1"/>
+                            <field name="collection_centre_id" readonly="1"/>
+                            <field name="collected_by"/>
+                        </group>
+                        <group string="Quantity &amp; Quality">
+                            <field name="quantity_litres"/>
+                            <field name="can_number"/>
+                            <field name="temperature_celsius"/>
+                            <field name="quality_grade" widget="badge"/>
+                            <field name="quality_test_id"/>
+                        </group>
+                    </group>
+                    <group invisible="quality_grade != 'rejected'">
+                        <field name="rejection_reason" widget="text"/>
+                    </group>
+                    <group string="Pricing">
+                        <field name="unit_price"/>
+                        <field name="amount_due" readonly="1"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Collection Search -->
+    <record id="mdairy_collection_search_view" model="ir.ui.view">
+        <field name="name">mdairy.collection.search</field>
+        <field name="model">mdairy.collection</field>
+        <field name="arch" type="xml">
+            <search string="Search Collections">
+                <field name="name"/>
+                <field name="farmer_id"/>
+                <field name="cooperative_id"/>
+                <field name="collection_centre_id"/>
+                <filter string="Today" name="today"
+                        domain="[('collection_date','=',context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="This Week" name="this_week"
+                        domain="[('collection_date','&gt;=', (context_today() - datetime.timedelta(days=7)).strftime('%Y-%m-%d'))]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state','=','confirmed')]"/>
+                <filter string="Rejected" name="rejected" domain="[('state','=','rejected')]"/>
+                <separator/>
+                <filter string="Morning" name="morning" domain="[('session','=','morning')]"/>
+                <filter string="Evening" name="evening" domain="[('session','=','evening')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Farmer" name="group_farmer" context="{'group_by':'farmer_id'}"/>
+                    <filter string="Date" name="group_date" context="{'group_by':'collection_date'}"/>
+                    <filter string="Session" name="group_session" context="{'group_by':'session'}"/>
+                    <filter string="Quality Grade" name="group_grade" context="{'group_by':'quality_grade'}"/>
+                    <filter string="Cooperative" name="group_coop" context="{'group_by':'cooperative_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Price Configuration List/Form -->
+    <record id="mdairy_collection_price_list_view" model="ir.ui.view">
+        <field name="name">mdairy.collection.price.list</field>
+        <field name="model">mdairy.collection.price</field>
+        <field name="arch" type="xml">
+            <list string="Milk Prices" editable="bottom">
+                <field name="name"/>
+                <field name="cooperative_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="price_grade_a"/>
+                <field name="price_grade_b"/>
+                <field name="price_grade_c"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_mdairy_collection" model="ir.actions.act_window">
+        <field name="name">Milk Collections</field>
+        <field name="res_model">mdairy.collection</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="mdairy_collection_search_view"/>
+        <field name="context">{'search_default_confirmed': 1}</field>
+    </record>
+
+    <record id="action_mdairy_collection_price" model="ir.actions.act_window">
+        <field name="name">Milk Price Configuration</field>
+        <field name="res_model">mdairy.collection.price</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

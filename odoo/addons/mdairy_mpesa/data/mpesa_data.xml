@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_mdairy_mpesa_transaction" model="ir.sequence">
+        <field name="name">MPESA Transaction Sequence</field>
+        <field name="code">mdairy.mpesa.transaction</field>
+        <field name="prefix">MPESA/%(year)s/</field>
+        <field name="padding">6</field>
+    </record>
+</odoo>

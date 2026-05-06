@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL ────────────────────────────────────────────────────────────────
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_DB: mdairy
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Odoo ─────────────────────────────────────────────────────────────────────
+  odoo:
+    image: odoo:16.0
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - ./odoo/addons:/mnt/extra-addons
+      - odoo_data:/var/lib/odoo
+    command: >
+      odoo
+      --db_host=db
+      --db_port=5432
+      --db_user=odoo
+      --db_password=odoo
+      --addons-path=/mnt/extra-addons,/usr/lib/python3/dist-packages/odoo/addons
+      --load=base,web
+
+  # ── Next.js Frontend ─────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - odoo
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_ODOO_URL: http://odoo:8069
+      NEXT_PUBLIC_ODOO_DB: mdairy
+      NODE_ENV: production
+
+volumes:
+  db_data:
+  odoo_data:

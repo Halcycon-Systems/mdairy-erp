@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_mdairy_collection" model="ir.sequence">
+        <field name="name">Milk Collection Sequence</field>
+        <field name="code">mdairy.collection</field>
+        <field name="prefix">COL/%(year)s/%(month)s/</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_mdairy_quality_test" model="ir.sequence">
+        <field name="name">Quality Test Sequence</field>
+        <field name="code">mdairy.quality.test</field>
+        <field name="prefix">QT/%(year)s/</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

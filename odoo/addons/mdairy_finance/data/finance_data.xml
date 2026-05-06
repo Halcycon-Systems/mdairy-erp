@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_mdairy_payout_batch" model="ir.sequence">
+        <field name="name">Payout Batch Sequence</field>
+        <field name="code">mdairy.payout.batch</field>
+        <field name="prefix">PAY-BATCH/%(year)s/%(month)s/</field>
+        <field name="padding">3</field>
+    </record>
+
+    <record id="seq_mdairy_payout" model="ir.sequence">
+        <field name="name">Farmer Payout Sequence</field>
+        <field name="code">mdairy.payout</field>
+        <field name="prefix">PAY/%(year)s/%(month)s/</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

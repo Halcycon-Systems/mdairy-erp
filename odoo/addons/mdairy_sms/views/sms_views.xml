@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SMS Config Form -->
+    <record id="mdairy_sms_config_form_view" model="ir.ui.view">
+        <field name="name">mdairy.sms.config.form</field>
+        <field name="model">mdairy.sms.config</field>
+        <field name="arch" type="xml">
+            <form string="SMS Gateway Configuration">
+                <header>
+                    <button name="action_test_sms" string="Send Test SMS"
+                            type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="provider" widget="radio"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </group>
+                    <!-- Africa's Talking fields -->
+                    <group string="Africa's Talking Settings"
+                           invisible="provider != 'africastalking'">
+                        <field name="at_username"/>
+                        <field name="at_api_key" password="True"/>
+                        <field name="at_sender_id"/>
+                        <field name="at_environment" widget="radio"/>
+                    </group>
+                    <!-- Twilio fields -->
+                    <group string="Twilio Settings" invisible="provider != 'twilio'">
+                        <field name="twilio_account_sid"/>
+                        <field name="twilio_auth_token" password="True"/>
+                        <field name="twilio_from_number"/>
+                    </group>
+                    <!-- Custom HTTP fields -->
+                    <group string="Custom API Settings" invisible="provider != 'custom'">
+                        <field name="custom_api_url"/>
+                        <field name="custom_api_key" password="True"/>
+                        <field name="custom_payload_template" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SMS Config List -->
+    <record id="mdairy_sms_config_list_view" model="ir.ui.view">
+        <field name="name">mdairy.sms.config.list</field>
+        <field name="model">mdairy.sms.config</field>
+        <field name="arch" type="xml">
+            <list string="SMS Gateways">
+                <field name="name"/>
+                <field name="provider"/>
+                <field name="active" widget="boolean"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- SMS Message Log List -->
+    <record id="mdairy_sms_message_list_view" model="ir.ui.view">
+        <field name="name">mdairy.sms.message.list</field>
+        <field name="model">mdairy.sms.message</field>
+        <field name="arch" type="xml">
+            <list string="SMS Messages"
+                  decoration-success="state=='delivered'"
+                  decoration-info="state=='sent'"
+                  decoration-danger="state=='failed'"
+                  decoration-muted="state=='pending'">
+                <field name="name"/>
+                <field name="farmer_id"/>
+                <field name="to_number"/>
+                <field name="message_body" string="Message"/>
+                <field name="template_id"/>
+                <field name="sent_at"/>
+                <field name="state" widget="badge"
+                       decoration-success="state=='delivered'"
+                       decoration-info="state=='sent'"
+                       decoration-danger="state=='failed'"
+                       decoration-muted="state=='pending'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- SMS Template List/Form -->
+    <record id="mdairy_sms_template_list_view" model="ir.ui.view">
+        <field name="name">mdairy.sms.template.list</field>
+        <field name="model">mdairy.sms.template</field>
+        <field name="arch" type="xml">
+            <list string="SMS Templates">
+                <field name="name"/>
+                <field name="event_type"/>
+                <field name="language"/>
+                <field name="active" widget="boolean"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="mdairy_sms_template_form_view" model="ir.ui.view">
+        <field name="name">mdairy.sms.template.form</field>
+        <field name="model">mdairy.sms.template</field>
+        <field name="arch" type="xml">
+            <form string="SMS Template">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="event_type"/>
+                        <field name="language"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </group>
+                    <group string="Message Body">
+                        <field name="body" nolabel="1" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Test SMS Wizard -->
+    <record id="mdairy_sms_test_wizard_form" model="ir.ui.view">
+        <field name="name">mdairy.sms.test.wizard.form</field>
+        <field name="model">mdairy.sms.test.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send Test SMS">
+                <group>
+                    <field name="config_id"/>
+                    <field name="to_number"/>
+                    <field name="message" widget="text"/>
+                </group>
+                <footer>
+                    <button name="action_send_test" string="Send" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_mdairy_sms_config" model="ir.actions.act_window">
+        <field name="name">SMS Configuration</field>
+        <field name="res_model">mdairy.sms.config</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_mdairy_sms_message" model="ir.actions.act_window">
+        <field name="name">SMS Messages</field>
+        <field name="res_model">mdairy.sms.message</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_mdairy_sms_template" model="ir.actions.act_window">
+        <field name="name">SMS Templates</field>
+        <field name="res_model">mdairy.sms.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

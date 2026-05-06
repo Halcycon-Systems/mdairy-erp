@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mdairy_sms_config_user,mdairy.sms.config.user,model_mdairy_sms_config,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_sms_config_manager,mdairy.sms.config.manager,model_mdairy_sms_config,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_sms_message_user,mdairy.sms.message.user,model_mdairy_sms_message,mdairy_base.group_mdairy_user,1,1,1,0
+access_mdairy_sms_message_manager,mdairy.sms.message.manager,model_mdairy_sms_message,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_sms_template_user,mdairy.sms.template.user,model_mdairy_sms_template,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_sms_template_manager,mdairy.sms.template.manager,model_mdairy_sms_template,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_sms_test_wizard,mdairy.sms.test.wizard,model_mdairy_sms_test_wizard,mdairy_base.group_mdairy_manager,1,1,1,1

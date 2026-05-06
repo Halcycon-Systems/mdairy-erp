@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Quality Test List -->
+    <record id="mdairy_quality_test_list_view" model="ir.ui.view">
+        <field name="name">mdairy.quality.test.list</field>
+        <field name="model">mdairy.quality.test</field>
+        <field name="arch" type="xml">
+            <list string="Quality Tests"
+                  decoration-danger="grade=='rejected'"
+                  decoration-success="grade=='A'"
+                  decoration-warning="grade=='C'">
+                <field name="name"/>
+                <field name="test_date"/>
+                <field name="session"/>
+                <field name="farmer_id"/>
+                <field name="collection_centre_id"/>
+                <field name="fat_percentage"/>
+                <field name="snf_percentage"/>
+                <field name="acidity_ph"/>
+                <field name="antibiotics_present" widget="boolean"/>
+                <field name="grade" widget="badge"
+                       decoration-success="grade=='A'"
+                       decoration-warning="grade in ['B','C']"
+                       decoration-danger="grade=='rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Quality Test Form -->
+    <record id="mdairy_quality_test_form_view" model="ir.ui.view">
+        <field name="name">mdairy.quality.test.form</field>
+        <field name="model">mdairy.quality.test</field>
+        <field name="arch" type="xml">
+            <form string="Quality Test">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <div class="o_field_widget o_statusbar_status">
+                            <field name="grade" widget="badge"
+                                   decoration-success="grade=='A'"
+                                   decoration-warning="grade in ['B','C']"
+                                   decoration-danger="grade=='rejected'"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group string="Sample Information">
+                            <field name="test_date"/>
+                            <field name="session"/>
+                            <field name="sample_source"/>
+                            <field name="farmer_id" invisible="sample_source != 'farmer'"/>
+                            <field name="collection_centre_id" invisible="sample_source == 'farmer'"/>
+                            <field name="tester_id"/>
+                        </group>
+                        <group string="Physical Parameters">
+                            <field name="temperature_celsius"/>
+                            <field name="colour" widget="radio"/>
+                            <field name="odour" widget="radio"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Chemical Parameters">
+                            <field name="fat_percentage"/>
+                            <field name="protein_percentage"/>
+                            <field name="lactose_percentage"/>
+                            <field name="snf_percentage"/>
+                            <field name="density"/>
+                            <field name="acidity_ph"/>
+                            <field name="freezing_point"/>
+                        </group>
+                        <group string="Adulteration Tests">
+                            <field name="antibiotics_present" widget="boolean_toggle"/>
+                            <field name="water_added" widget="boolean_toggle"/>
+                            <field name="starch_present" widget="boolean_toggle"/>
+                            <field name="detergent_present" widget="boolean_toggle"/>
+                            <field name="aflatoxin_ppb"/>
+                        </group>
+                    </group>
+                    <group string="Microbiology">
+                        <field name="total_plate_count"/>
+                        <field name="somatic_cell_count"/>
+                    </group>
+                    <group string="Result" invisible="grade != 'rejected'">
+                        <field name="rejection_reasons" nolabel="1" readonly="1" widget="text"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Quality Test Action -->
+    <record id="action_mdairy_quality_test" model="ir.actions.act_window">
+        <field name="name">Quality Tests</field>
+        <field name="res_model">mdairy.quality.test</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

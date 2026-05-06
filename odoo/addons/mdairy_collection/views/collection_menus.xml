@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Collection menu group -->
+    <menuitem id="menu_mdairy_collection"
+              name="Collection"
+              parent="mdairy_base.menu_mdairy_root"
+              sequence="20"/>
+
+    <menuitem id="menu_mdairy_collection_list"
+              name="Milk Collections"
+              parent="menu_mdairy_collection"
+              action="action_mdairy_collection"
+              sequence="10"/>
+
+    <menuitem id="menu_mdairy_quality_tests"
+              name="Quality Tests"
+              parent="menu_mdairy_collection"
+              action="action_mdairy_quality_test"
+              sequence="20"/>
+
+    <menuitem id="menu_mdairy_collection_price"
+              name="Price Configuration"
+              parent="menu_mdairy_collection"
+              action="action_mdairy_collection_price"
+              sequence="30"/>
+</odoo>

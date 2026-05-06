@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mdairy_collection_user,mdairy.collection.user,model_mdairy_collection,mdairy_base.group_mdairy_user,1,1,1,0
+access_mdairy_collection_manager,mdairy.collection.manager,model_mdairy_collection,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_quality_test_user,mdairy.quality.test.user,model_mdairy_quality_test,mdairy_base.group_mdairy_user,1,1,1,0
+access_mdairy_quality_test_manager,mdairy.quality.test.manager,model_mdairy_quality_test,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_collection_price_user,mdairy.collection.price.user,model_mdairy_collection_price,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_collection_price_manager,mdairy.collection.price.manager,model_mdairy_collection_price,mdairy_base.group_mdairy_manager,1,1,1,1
