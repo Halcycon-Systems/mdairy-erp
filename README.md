@@ -1,6 +1,6 @@
 # mDairy ERP
 
-A practical dairy management system built with **Odoo 16** (backend) and **Next.js 14** (frontend).
+A practical dairy management system built with **Odoo 16** (backend) and **Next.js 15** (frontend).
 
 ## Features
 
