@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_mdairy_sms_message" model="ir.sequence">
+        <field name="name">SMS Message Sequence</field>
+        <field name="code">mdairy.sms.message</field>
+        <field name="prefix">SMS/%(year)s/</field>
+        <field name="padding">6</field>
+    </record>
+
+    <!-- Default SMS templates -->
+    <record id="sms_template_collection_confirmed" model="mdairy.sms.template">
+        <field name="name">Collection Confirmed</field>
+        <field name="event_type">collection_confirmed</field>
+        <field name="body">Dear {farmer_name}, we have received {litres}L of Grade {grade} milk on {date} ({session}). Amount due: KES {amount}. Ref: {reference}. Thank you.</field>
+    </record>
+
+    <record id="sms_template_collection_rejected" model="mdairy.sms.template">
+        <field name="name">Collection Rejected</field>
+        <field name="event_type">collection_rejected</field>
+        <field name="body">Dear {farmer_name}, your milk delivery on {date} ({session}) has been rejected. Reason: quality check failed. Please contact your collection centre for details. Ref: {reference}.</field>
+    </record>
+
+    <record id="sms_template_payout_approved" model="mdairy.sms.template">
+        <field name="name">Payout Approved</field>
+        <field name="event_type">payout_approved</field>
+        <field name="body">Dear {farmer_name}, your payout of KES {amount} for the period {date} has been approved and will be disbursed shortly. Ref: {reference}.</field>
+    </record>
+
+    <record id="sms_template_payout_disbursed" model="mdairy.sms.template">
+        <field name="name">Payout Disbursed</field>
+        <field name="event_type">payout_disbursed</field>
+        <field name="body">Dear {farmer_name}, KES {amount} has been sent to your {phone}. MPESA Ref: {reference}. Thank you for your continued partnership with mDairy.</field>
+    </record>
+
+    <record id="sms_template_registration" model="mdairy.sms.template">
+        <field name="name">Farmer Registration</field>
+        <field name="event_type">registration</field>
+        <field name="body">Dear {farmer_name}, welcome to mDairy ERP! Your farmer code is {reference}. You are now registered and can start delivering milk at your nearest collection centre.</field>
+    </record>
+</odoo>

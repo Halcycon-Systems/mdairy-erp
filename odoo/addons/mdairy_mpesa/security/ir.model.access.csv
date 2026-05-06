@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mdairy_mpesa_config_user,mdairy.mpesa.config.user,model_mdairy_mpesa_config,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_mpesa_config_manager,mdairy.mpesa.config.manager,model_mdairy_mpesa_config,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_mpesa_transaction_user,mdairy.mpesa.transaction.user,model_mdairy_mpesa_transaction,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_mpesa_transaction_manager,mdairy.mpesa.transaction.manager,model_mdairy_mpesa_transaction,mdairy_base.group_mdairy_manager,1,1,1,1

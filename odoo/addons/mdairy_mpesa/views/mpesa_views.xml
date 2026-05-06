@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- MPESA Config Form -->
+    <record id="mdairy_mpesa_config_form_view" model="ir.ui.view">
+        <field name="name">mdairy.mpesa.config.form</field>
+        <field name="model">mdairy.mpesa.config</field>
+        <field name="arch" type="xml">
+            <form string="MPESA Configuration">
+                <header>
+                    <button name="action_test_connection" string="Test Connection"
+                            type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Environment">
+                            <field name="environment" widget="radio"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Business Details">
+                            <field name="shortcode"/>
+                            <field name="initiator_name"/>
+                        </group>
+                    </group>
+                    <group string="Daraja API Credentials">
+                        <field name="consumer_key"/>
+                        <field name="consumer_secret" password="True"/>
+                        <field name="security_credential" widget="text"/>
+                    </group>
+                    <group string="Callback URLs">
+                        <field name="queue_timeout_url"/>
+                        <field name="result_url"/>
+                        <field name="remarks"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- MPESA Config List -->
+    <record id="mdairy_mpesa_config_list_view" model="ir.ui.view">
+        <field name="name">mdairy.mpesa.config.list</field>
+        <field name="model">mdairy.mpesa.config</field>
+        <field name="arch" type="xml">
+            <list string="MPESA Configurations">
+                <field name="name"/>
+                <field name="environment"/>
+                <field name="shortcode"/>
+                <field name="initiator_name"/>
+                <field name="active" widget="boolean"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- MPESA Transaction List -->
+    <record id="mdairy_mpesa_transaction_list_view" model="ir.ui.view">
+        <field name="name">mdairy.mpesa.transaction.list</field>
+        <field name="model">mdairy.mpesa.transaction</field>
+        <field name="arch" type="xml">
+            <list string="MPESA Transactions"
+                  decoration-success="state=='success'"
+                  decoration-danger="state=='failed'"
+                  decoration-warning="state=='timeout'"
+                  decoration-info="state=='queued'">
+                <field name="name"/>
+                <field name="farmer_id"/>
+                <field name="phone_number"/>
+                <field name="amount" sum="Total"/>
+                <field name="mpesa_receipt_number"/>
+                <field name="request_timestamp"/>
+                <field name="transaction_completed_date"/>
+                <field name="state" widget="badge"
+                       decoration-success="state=='success'"
+                       decoration-danger="state=='failed'"
+                       decoration-warning="state=='timeout'"
+                       decoration-info="state=='queued'"
+                       decoration-muted="state=='pending'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- MPESA Transaction Form -->
+    <record id="mdairy_mpesa_transaction_form_view" model="ir.ui.view">
+        <field name="name">mdairy.mpesa.transaction.form</field>
+        <field name="model">mdairy.mpesa.transaction</field>
+        <field name="arch" type="xml">
+            <form string="MPESA Transaction">
+                <header>
+                    <button name="action_send" string="Send Payment"
+                            type="object" class="oe_highlight"
+                            invisible="state not in ['pending','failed','timeout']"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,queued,success"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Payment Details">
+                            <field name="payout_id"/>
+                            <field name="farmer_id" readonly="1"/>
+                            <field name="phone_number"/>
+                            <field name="amount"/>
+                            <field name="remarks"/>
+                            <field name="config_id"/>
+                        </group>
+                        <group string="Request">
+                            <field name="conversation_id"/>
+                            <field name="originator_conversation_id"/>
+                            <field name="request_timestamp"/>
+                        </group>
+                    </group>
+                    <group string="Result" invisible="state == 'pending'">
+                        <field name="result_code"/>
+                        <field name="result_description"/>
+                        <field name="mpesa_receipt_number"/>
+                        <field name="receiver_public_name"/>
+                        <field name="transaction_amount"/>
+                        <field name="transaction_completed_date"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_mdairy_mpesa_config" model="ir.actions.act_window">
+        <field name="name">MPESA Configuration</field>
+        <field name="res_model">mdairy.mpesa.config</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_mdairy_mpesa_transaction" model="ir.actions.act_window">
+        <field name="name">MPESA Transactions</field>
+        <field name="res_model">mdairy.mpesa.transaction</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

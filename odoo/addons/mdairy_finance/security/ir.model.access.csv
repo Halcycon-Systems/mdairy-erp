@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mdairy_payout_batch_user,mdairy.payout.batch.user,model_mdairy_payout_batch,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_payout_batch_manager,mdairy.payout.batch.manager,model_mdairy_payout_batch,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_payout_user,mdairy.payout.user,model_mdairy_payout,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_payout_manager,mdairy.payout.manager,model_mdairy_payout,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_payout_deduction_line_user,mdairy.payout.deduction.line.user,model_mdairy_payout_deduction_line,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_payout_deduction_line_manager,mdairy.payout.deduction.line.manager,model_mdairy_payout_deduction_line,mdairy_base.group_mdairy_manager,1,1,1,1
+access_mdairy_deduction_user,mdairy.deduction.user,model_mdairy_deduction,mdairy_base.group_mdairy_user,1,0,0,0
+access_mdairy_deduction_manager,mdairy.deduction.manager,model_mdairy_deduction,mdairy_base.group_mdairy_manager,1,1,1,1

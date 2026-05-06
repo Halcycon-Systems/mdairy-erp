@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Integrations menu -->
+    <menuitem id="menu_mdairy_integrations"
+              name="Integrations"
+              parent="mdairy_base.menu_mdairy_root"
+              sequence="40"/>
+
+    <menuitem id="menu_mdairy_mpesa_transactions"
+              name="MPESA Transactions"
+              parent="menu_mdairy_integrations"
+              action="action_mdairy_mpesa_transaction"
+              sequence="10"/>
+
+    <menuitem id="menu_mdairy_mpesa_config"
+              name="MPESA Configuration"
+              parent="menu_mdairy_integrations"
+              action="action_mdairy_mpesa_config"
+              sequence="20"/>
+</odoo>

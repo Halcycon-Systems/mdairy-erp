@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_mdairy_sms_messages"
+              name="SMS Messages"
+              parent="mdairy_mpesa.menu_mdairy_integrations"
+              action="action_mdairy_sms_message"
+              sequence="30"/>
+
+    <menuitem id="menu_mdairy_sms_templates"
+              name="SMS Templates"
+              parent="mdairy_mpesa.menu_mdairy_integrations"
+              action="action_mdairy_sms_template"
+              sequence="40"/>
+
+    <menuitem id="menu_mdairy_sms_config"
+              name="SMS Configuration"
+              parent="mdairy_mpesa.menu_mdairy_integrations"
+              action="action_mdairy_sms_config"
+              sequence="50"/>
+</odoo>

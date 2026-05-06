@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Cooperative List View -->
+    <record id="mdairy_cooperative_list_view" model="ir.ui.view">
+        <field name="name">mdairy.cooperative.list</field>
+        <field name="model">mdairy.cooperative</field>
+        <field name="arch" type="xml">
+            <list string="Cooperatives">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="county"/>
+                <field name="farmer_count"/>
+                <field name="centre_count"/>
+                <field name="state" widget="badge"
+                       decoration-success="state=='active'"
+                       decoration-muted="state=='inactive'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Cooperative Form View -->
+    <record id="mdairy_cooperative_form_view" model="ir.ui.view">
+        <field name="name">mdairy.cooperative.form</field>
+        <field name="model">mdairy.cooperative</field>
+        <field name="arch" type="xml">
+            <form string="Cooperative">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_farmers" type="object"
+                                class="oe_stat_button" icon="fa-users">
+                            <field name="farmer_count" widget="statinfo" string="Farmers"/>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-building">
+                            <field name="centre_count" widget="statinfo" string="Centres"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="code"/>
+                        <h1><field name="code" readonly="1"/></h1>
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Registration">
+                            <field name="registration_number"/>
+                            <field name="county"/>
+                            <field name="state" widget="badge"/>
+                        </group>
+                        <group string="Contact">
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="address"/>
+                        </group>
+                    </group>
+                    <group string="Leadership">
+                        <field name="chairman_name"/>
+                        <field name="secretary_name"/>
+                        <field name="treasurer_name"/>
+                    </group>
+                    <notebook>
+                        <page string="Collection Centres">
+                            <field name="collection_centre_ids">
+                                <list editable="bottom">
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="location"/>
+                                    <field name="manager_name"/>
+                                    <field name="phone"/>
+                                    <field name="capacity_litres"/>
+                                    <field name="farmer_count" string="Farmers"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cooperative Action -->
+    <record id="action_mdairy_cooperative" model="ir.actions.act_window">
+        <field name="name">Cooperatives</field>
+        <field name="res_model">mdairy.cooperative</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Collection Centre Action -->
+    <record id="action_mdairy_collection_centre" model="ir.actions.act_window">
+        <field name="name">Collection Centres</field>
+        <field name="res_model">mdairy.collection.centre</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

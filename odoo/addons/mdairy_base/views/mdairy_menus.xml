@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main mDairy application menu -->
+    <menuitem id="menu_mdairy_root"
+              name="mDairy ERP"
+              web_icon="mdairy_base,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Farmers menu group -->
+    <menuitem id="menu_mdairy_farmers"
+              name="Farmers"
+              parent="menu_mdairy_root"
+              sequence="10"/>
+
+    <menuitem id="menu_mdairy_farmer_list"
+              name="All Farmers"
+              parent="menu_mdairy_farmers"
+              action="action_mdairy_farmer"
+              sequence="10"/>
+
+    <menuitem id="menu_mdairy_cooperative"
+              name="Cooperatives"
+              parent="menu_mdairy_farmers"
+              action="action_mdairy_cooperative"
+              sequence="20"/>
+
+    <menuitem id="menu_mdairy_collection_centre"
+              name="Collection Centres"
+              parent="menu_mdairy_farmers"
+              action="action_mdairy_collection_centre"
+              sequence="30"/>
+</odoo>
