@@ -63,7 +63,7 @@ MDairy-erp/
 │   └── audit_log/
 │
 ├── config/
-│   └── odoo.conf
+│   └── odoo.conf.example
 │
 ├── docs/
 │
@@ -71,6 +71,8 @@ MDairy-erp/
 ├── .gitignore
 └── README.md
 ```
+
+Each developer creates `config\odoo.conf` locally by copying `config\odoo.conf.example`. That local file is intentionally not committed.
 
 ---
 
@@ -297,7 +299,24 @@ Direct pushes to `main` are not allowed.
 
 # Local Development Setup
 
-## 1. Clone Odoo 17
+## 1. Expected Local Versions
+
+To keep the team setup predictable, please use:
+
+* Python 3.11
+* PostgreSQL 12+ supported by Odoo 17
+* PostgreSQL 14+ recommended for this project
+
+You can confirm your versions with:
+
+```bash
+python --version
+psql --version
+```
+
+---
+
+## 2. Clone Odoo 17
 
 Odoo itself is kept outside this repository.
 
@@ -307,7 +326,7 @@ git clone --depth 1 --branch 17.0 https://github.com/odoo/odoo.git
 
 ---
 
-## 2. Create Virtual Environment
+## 3. Create Virtual Environment
 
 ### Windows
 
@@ -325,7 +344,7 @@ source venv/bin/activate
 
 ---
 
-## 3. Install Dependencies
+## 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -333,7 +352,7 @@ pip install -r requirements.txt
 
 ---
 
-## 4. Configure PostgreSQL
+## 5. Configure PostgreSQL
 
 ```sql
 CREATE USER odoo WITH PASSWORD '123@Odoo!';
@@ -342,7 +361,30 @@ ALTER USER odoo CREATEDB;
 
 ---
 
-## 5. Run Odoo
+## 6. Create Your Local Odoo Config
+
+Copy the shared example config:
+
+```bash
+copy config\odoo.conf.example config\odoo.conf
+```
+
+If you are on Linux or Mac:
+
+```bash
+cp config/odoo.conf.example config/odoo.conf
+```
+
+Then open `config\odoo.conf` and update:
+
+* `db_password`
+* `admin_passwd`
+
+These are local values for your machine, so please keep them out of Git.
+
+---
+
+## 7. Run Odoo
 
 ```bash
 python ../odoo/odoo-bin -c config/odoo.conf
@@ -353,6 +395,8 @@ Open:
 ```text
 http://localhost:8069
 ```
+
+If the server starts and the page opens, your environment is ready and you can begin working from `develop`.
 
 ---
 

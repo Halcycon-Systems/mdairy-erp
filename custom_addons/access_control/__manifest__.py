@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "access_control",
+    'name': "Dairy Societies Management System - Access Control",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "Role-based access for clerks, supervisors, finance, and admin.",
 
     'description': """
-Long description of module's purpose
+Access governance for the Dairy Societies Management System.
+This module is intended to define operational roles and keep
+permissions aligned with day-to-day responsibilities.
     """,
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "Halcyon * KaribuWD",
+    'website': "https://github.com/kirobi01/mdairy-erp",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
+    'category': 'Industries',
+    'version': '17.0.1.0.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -31,4 +33,3 @@ Long description of module's purpose
         'demo/demo.xml',
     ],
 }
-
