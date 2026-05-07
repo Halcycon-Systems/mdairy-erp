@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MDairy ERP
 
 MDairy ERP is a collaborative Odoo 17 project focused on building a practical and maintainable dairy management system.
@@ -397,3 +398,7 @@ The first working version of the system should support:
 
 The intention is to build a stable, maintainable, and scalable ERP platform that reflects actual dairy operational workflows while remaining clean enough for long-term development and collaboration.
  
+=======
+# mdairy-erp
+This is a repo for the collaborative development of a dairy erp system
+>>>>>>> e44331e3ab19cf52032b9a26628ae94c08639cde
