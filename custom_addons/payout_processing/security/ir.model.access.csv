@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payout_processing_payout_processing,payout_processing.payout_processing,model_payout_processing_payout_processing,base.group_user,1,1,1,1

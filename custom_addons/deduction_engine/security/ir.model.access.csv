@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_deduction_engine_deduction_engine,deduction_engine.deduction_engine,model_deduction_engine_deduction_engine,base.group_user,1,1,1,1

@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="audit_log.list">
+      <field name="name">audit_log list</field>
+      <field name="model">audit_log.audit_log</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="audit_log.action_window">
+      <field name="name">audit_log window</field>
+      <field name="res_model">audit_log.audit_log</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="audit_log.action_server">
+      <field name="name">audit_log server</field>
+      <field name="model_id" ref="model_audit_log_audit_log"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="audit_log" id="audit_log.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="audit_log.menu_1" parent="audit_log.menu_root"/>
+    <menuitem name="Menu 2" id="audit_log.menu_2" parent="audit_log.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="audit_log.menu_1_list" parent="audit_log.menu_1"
+              action="audit_log.action_window"/>
+    <menuitem name="Server to list" id="audit_log" parent="audit_log.menu_2"
+              action="audit_log.action_server"/>
+-->
+  </data>
+</odoo>
