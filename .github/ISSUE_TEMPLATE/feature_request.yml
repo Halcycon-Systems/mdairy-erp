@@ -1,0 +1,62 @@
+name: Feature Request
+description: Suggest an improvement or a new feature for mDairy ERP
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to improve mDairy ERP? We'd love to hear it. Please describe what you'd like to see and why it would be valuable.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the problem or gap that this feature would address. Include any context specific to dairy cooperatives or mobile-money systems in Kenya.
+      placeholder: "As a cooperative manager, I struggle with X because..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature or change you would like to see. Be as specific as possible.
+      placeholder: "I would like a way to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you considered any alternative solutions or workarounds?
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area does this relate to?
+      options:
+        - mdairy_base (Farmer records, Cooperatives)
+        - mdairy_collection (Milk collection, Quality tests)
+        - mdairy_finance (Payout batches, Deductions)
+        - mdairy_mpesa (MPESA B2C integration)
+        - mdairy_sms (SMS notifications)
+        - Next.js frontend (dashboard / UI)
+        - Docker / Infrastructure
+        - Documentation
+        - New module / area
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add any other context, mockups, or screenshots here.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have searched for existing issues and this is not a duplicate
+          required: true
+        - label: I am willing to help implement this feature (optional)
