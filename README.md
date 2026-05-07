@@ -29,7 +29,7 @@ mdairy-erp/
 │   │   └── mdairy_sms/           # SMS notifications (Africa's Talking / Twilio)
 │   └── config/
 │       └── odoo.conf             # Odoo server configuration
-├── frontend/                     # Next.js 14 dashboard
+├── frontend/                     # Next.js 15 dashboard
 │   ├── src/
 │   │   ├── app/                  # App Router pages
 │   │   │   ├── page.tsx          # Dashboard
