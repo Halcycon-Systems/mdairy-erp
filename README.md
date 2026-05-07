@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 # MDairy ERP
 
-MDairy ERP is a collaborative Odoo 17 project focused on building a practical and maintainable dairy management system.
+MDairy ERP is a collaborative Odoo 17 project focused on building a practical and maintainable dairy, farmer and societies management system.
 
 The goal of this project is to provide a centralized platform for managing dairy operations from farmer registration and milk collection all the way to payouts, deductions, MPESA payments, and audit tracking.
 
@@ -204,11 +203,6 @@ Handles:
 * Payment confirmations
 * Loan updates
 
-Potential providers:
-
-* Africa's Talking
-* Twilio
-
 ---
 
 # System Control Modules
@@ -342,7 +336,7 @@ pip install -r requirements.txt
 ## 4. Configure PostgreSQL
 
 ```sql
-CREATE USER odoo WITH PASSWORD 'odoo123';
+CREATE USER odoo WITH PASSWORD '123@Odoo!';
 ALTER USER odoo CREATEDB;
 ```
 
@@ -397,8 +391,4 @@ The first working version of the system should support:
 # Long-Term Goal
 
 The intention is to build a stable, maintainable, and scalable ERP platform that reflects actual dairy operational workflows while remaining clean enough for long-term development and collaboration.
- 
-=======
-# mdairy-erp
-This is a repo for the collaborative development of a dairy erp system
->>>>>>> e44331e3ab19cf52032b9a26628ae94c08639cde
+
